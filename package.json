@@ -1,0 +1,9 @@
+{
+  "name": "react-practice",
+  "private": true,
+  "workspaces": ["apps/*"],
+  "scripts": {
+    "dev": "npm -ws --if-present run dev",
+    "build": "npm -ws --if-present run build"
+  }
+}
