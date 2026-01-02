@@ -1,3 +1,4 @@
+import './index.css'
 import { useEffect, useState, useRef } from 'react'
 
 const pad = (num: number) => String(num).padStart(2, '0')
@@ -11,7 +12,8 @@ type CountDownActive = {
   minutes: string
   seconds: string
   status: string
-  setStatus: (value: React.SetStateAction<string>) => void
+  onPause: () => void
+  onResume: () => void
   resetTimer: () => void
 }
 
@@ -28,6 +30,7 @@ function CountDownIdle(props: CountDownIdle) {
         placeholder="HH"
         name="hours"
         id="hours"
+        inputMode="numeric"
       />
       {' : '}
       <label htmlFor="minutes" className="sr-only">
@@ -39,7 +42,7 @@ function CountDownIdle(props: CountDownIdle) {
         placeholder="MM"
         name="minutes"
         id="minutes"
-        max={59}
+        inputMode="numeric"
       />
       {' : '}
       <label htmlFor="seconds" className="sr-only">
@@ -51,7 +54,7 @@ function CountDownIdle(props: CountDownIdle) {
         placeholder="SS"
         name="seconds"
         id="seconds"
-        max={59}
+        inputMode="numeric"
       />
       <button>Start</button>
     </form>
@@ -59,20 +62,18 @@ function CountDownIdle(props: CountDownIdle) {
 }
 
 function CountDownActive(props: CountDownActive) {
-  const { hours, minutes, seconds, status, setStatus, resetTimer } = props
+  const { hours, minutes, seconds, status, onPause, onResume, resetTimer } =
+    props
   return (
-    <div className="wrapper">
-      <span>{hours}</span>
-      {' : '}
-      <span>{minutes}</span>
-      {' : '}
-      <span>{seconds}</span>
-      {status === 'running' && (
-        <button onClick={() => setStatus('paused')}>Pause</button>
-      )}
-      {status === 'paused' && (
-        <button onClick={() => setStatus('running')}>Resume</button>
-      )}
+    <div className="wrapper" role="timer" aria-live="polite" aria-atomic="true">
+      <span aria-hidden="true">
+        {hours} : {minutes} : {seconds}
+      </span>
+      <span className="sr-only">
+        {hours} hours {minutes} minutes {seconds} seconds remaining
+      </span>
+      {status === 'running' && <button onClick={onPause}>Pause</button>}
+      {status === 'paused' && <button onClick={onResume}>Resume</button>}
       <button onClick={resetTimer}>Reset</button>
     </div>
   )
@@ -146,7 +147,7 @@ export default function CountDown() {
 
   return (
     <section>
-      <header>Countdown timer</header>
+      <h1>Countdown timer</h1>
       {status === 'idle' && <CountDownIdle handleSubmit={handleSubmit} />}
       {status !== 'idle' && (
         <CountDownActive
@@ -154,7 +155,8 @@ export default function CountDown() {
           minutes={minutes}
           seconds={seconds}
           status={status}
-          setStatus={setStatus}
+          onPause={() => setStatus('paused')}
+          onResume={() => setStatus('running')}
           resetTimer={resetTimer}
         />
       )}
