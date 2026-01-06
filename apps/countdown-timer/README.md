@@ -15,3 +15,6 @@ Instead of maintaining multiple pieces of state, I used a single source of truth
 - While the timer is counting down, the numbers should be zero-padded (e.g. `01` vs `1`)
 - When the timer reaches zero, if the app has appropriate permissions, it should display a [Notification](https://developer.mozilla.org/en-US/docs/Web/API/notification) that the timer is complete
 - If the app doesn't have appropriate permissions, it should show an `alert` when the timer reaches zero
+
+![Active timer](./public/active.png)
+![Idle timer](./public/idle.png)
