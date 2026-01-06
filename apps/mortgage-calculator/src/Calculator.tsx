@@ -27,8 +27,6 @@ export default function Calculator() {
     const interestRate = Number(data['interest'])
     const lengthLoan = Number(data['length'])
 
-    // console.log(calculateMonthlyMortgage(loanAmount, interestRate, lengthLoan))
-
     setMonthlyPayment(
       calculateMonthlyMortgage(principalAmount, interestRate, lengthLoan)
     )
@@ -45,9 +43,12 @@ export default function Calculator() {
             type="number"
             required
             min={10000}
+            inputMode="numeric"
             name="principal"
             id="principal"
+            aria-describedby="principal-hint"
           />
+          <small id="principal-hint">Minimum value is 10000</small>
         </div>
         <div>
           <label htmlFor="interest">Interest rate, %</label>
@@ -55,19 +56,30 @@ export default function Calculator() {
             type="number"
             required
             min={1}
+            step={0.01}
             max={100}
+            inputMode="numeric"
             name="interest"
             id="interest"
           />
         </div>
         <div>
           <label htmlFor="length">Length of loan, years</label>
-          <input type="number" required min={1} name="length" id="length" />
+          <input
+            type="number"
+            required
+            min={1}
+            inputMode="numeric"
+            name="length"
+            id="length"
+          />
         </div>
         <button>Calculate</button>
       </form>
       {monthlyPayment !== null && (
-        <div>Your monthly mortgage payment will be ${monthlyPayment}</div>
+        <div role="status">
+          Your monthly mortgage payment will be ${monthlyPayment}
+        </div>
       )}
     </section>
   )
