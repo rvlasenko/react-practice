@@ -1,13 +1,17 @@
 ## Countdown timer
 
-Timer that allows the user to enter hours, minutes, and seconds
+Timer that allows the user to enter hours, minutes, and seconds with a11y in mind.
+
+## My idea
+
+Instead of maintaining multiple pieces of state, I used a single source of truth: the remaining seconds for the entire counter. Hours, minutes, and seconds are derived from this value on each render.
 
 ## Requirements
 
-* The 'Hours', 'Minutes', and 'Seconds' fields should not have visible labels, but they should be accessible and clearly labelled to a screen reader
-* Pressing 'Start' should start the timer, replace the input fields with plain text for the hours/minutes/seconds, and replace 'Start' with 'Pause' and 'Reset' buttons
-* Pressing 'Pause' should pause the timer, and replace the 'Pause' button with a 'Start' button
-* Pressing 'Reset' should revert the app back to the initial state
-* While the timer is counting down, the numbers should be zero-padded (e.g. `01` vs `1`)
-* When the timer reaches zero, if the app has appropriate permissions, it should display a [Notification](https://developer.mozilla.org/en-US/docs/Web/API/notification) that the timer is complete
-* If the app doesn't have appropriate permissions, it should show an `alert` when the timer reaches zero
+- The 'Hours', 'Minutes', and 'Seconds' fields should not have visible labels, but they should be accessible and clearly labelled to a screen reader
+- Pressing 'Start' should start the timer, replace the input fields with plain text for the hours/minutes/seconds, and replace 'Start' with 'Pause' and 'Reset' buttons
+- Pressing 'Pause' should pause the timer, and replace the 'Pause' button with a 'Start' button
+- Pressing 'Reset' should revert the app back to the initial state
+- While the timer is counting down, the numbers should be zero-padded (e.g. `01` vs `1`)
+- When the timer reaches zero, if the app has appropriate permissions, it should display a [Notification](https://developer.mozilla.org/en-US/docs/Web/API/notification) that the timer is complete
+- If the app doesn't have appropriate permissions, it should show an `alert` when the timer reaches zero

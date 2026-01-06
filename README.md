@@ -1,7 +1,7 @@
 # React practice
 
-Personal React practice repository, primarily for learning and revision
+Personal React practice repository, primarily for learning and revision.
 
-This repo contains small to medium-sized exercises focused on a11y, state, effects, etc
+This repository contains small to medium-sized exercises focused on accessibility (a11y), state management, effects, UI behavior, etc.
 
-Each exercise lives in its own folder and often uses a headless UI approach
+Each exercise lives in its own folder and may use a headless UI approach, with the focus on logic rather than styling.
