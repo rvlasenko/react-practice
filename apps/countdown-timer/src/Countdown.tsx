@@ -1,6 +1,5 @@
 import CountdownActive from "./CountdownActive"
 import CountdownIdle from "./CountdownIdle"
-import "./index.css"
 import { useEffect, useState, useRef } from "react"
 
 const pad = (num: number) => String(num).padStart(2, "0")

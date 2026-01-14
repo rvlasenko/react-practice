@@ -1,9 +1,9 @@
 import { StrictMode } from "react"
 import { createRoot } from "react-dom/client"
-import Calculator from "./Calculator.tsx"
+import App from "./App.tsx"
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <Calculator />
+    <App />
   </StrictMode>
 )
