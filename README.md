@@ -8,4 +8,8 @@ Each exercise lives in its own `apps` folder and may use a headless UI approach,
 
 ## How to start
 
-`npm --workspace apps/countdown-timer run dev`
+`npm run dev -w apps/rolling-dice`
+
+`npm run dev -w apps/countdown-timer`
+
+etc
