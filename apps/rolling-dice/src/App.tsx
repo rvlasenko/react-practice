@@ -1,20 +1,19 @@
 import { useState } from "react"
 import Dice from "./Dice"
+import Form from "./Form"
+
+const getRandomValues = (length: number) =>
+  Array.from({ length }, () => Math.floor(Math.random() * 6) + 1)
 
 function App() {
   const [diceValues, setDiceValues] = useState<number[]>([])
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-
     const formData = new FormData(e.currentTarget)
     const data = Object.fromEntries(formData.entries())
-    const newDiceValues = Array.from(
-      { length: Number(data.number) },
-      () => Math.floor(Math.random() * 6) + 1
-    )
-
-    setDiceValues(newDiceValues)
+    const values = getRandomValues(Number(data.number))
+    setDiceValues(values)
   }
 
   return (
@@ -27,46 +26,19 @@ function App() {
           Roll between 1 and 99 six-sided dice
         </p>
 
-        <form onSubmit={handleSubmit} className="flex items-end gap-3 mb-6">
-          <div className="flex flex-col flex-1">
-            <label
-              htmlFor="number"
-              className="text-sm font-medium text-gray-700 mb-1"
-            >
-              Number of dice
-            </label>
-            <input
-              id="number"
-              name="number"
-              type="number"
-              min={1}
-              max={99}
-              defaultValue={1}
-              className="
-            h-10 px-3 rounded-lg border border-gray-300
-            focus:outline-none focus:ring-2 focus:ring-gray-900
-            focus:border-gray-900
-          "
-            />
-          </div>
+        <Form handleSubmit={handleSubmit} />
 
-          <button
-            className="
-          h-10 px-5 rounded-lg bg-gray-900 text-white
-          font-medium hover:bg-gray-800
-          focus:outline-none focus:ring-2 focus:ring-gray-900
-        "
-          >
-            Roll
-          </button>
-        </form>
+        <p className="text-xs text-gray-400 mt-2 mb-4">
+          Press{" "}
+          <kbd className="font-mono border border-gray-300 rounded px-1">
+            Space
+          </kbd>{" "}
+          to roll
+        </p>
 
         {diceValues.length > 0 && (
           <div
-            className="
-          max-h-80 overflow-y-auto
-          rounded-xl border border-gray-200 p-4
-        "
+            className="max-h-80 overflow-y-auto rounded-xl border border-gray-200 p-4"
             aria-live="polite"
             aria-label="Dice roll results"
           >
