@@ -1,4 +1,4 @@
-## Countdown timer
+# Countdown timer
 
 Timer that allows the user to enter hours, minutes, and seconds with a11y in mind.
 
@@ -18,3 +18,9 @@ Instead of maintaining multiple pieces of state, I used a single source of truth
 
 ![Active timer](./public/active.png)
 ![Idle timer](./public/idle.png)
+
+## How to run
+
+```sh
+npm run dev -w apps/countdown-timer
+```
